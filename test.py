@@ -200,6 +200,7 @@ with col[1]:
 with col[2]:
     st.markdown('#### Top States')
     print(df_selected_year_sorted)
+    print("jfd")
 
     st.dataframe(df_selected_year_sorted,
                  column_order=("states", "population"),
@@ -216,6 +217,7 @@ with col[2]:
                         max_value=max(df_selected_year_sorted.population),
                      )}
                  )
+
     
     with st.expander('About', expanded=True):
         st.write('''

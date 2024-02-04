@@ -9,7 +9,7 @@ st.set_page_config(
     page_title="MAHARASHTRA University Dashboard",
     page_icon="🏂",
     layout="wide",
-    initial_sidebar_state="expanded")
+    initial_sidebar_state="collapsed")
 
 alt.themes.enable("dark")
 
@@ -188,6 +188,51 @@ def pieofu():
     # Show the plotly figure
     st.plotly_chart(fig, use_container_width=True)
 
+def pieofct():
+
+    # Count the occurrences of College_Name for each University
+    college_counts = df_filtered.groupby('College_Type')['College_Name'].nunique().reset_index()
+    college_counts.columns = ['College_Type', 'Count']
+
+    # Create a pie chart using Plotly
+    fig = px.pie(college_counts, values='Count', names='College_Type', title='College Type')
+
+    # Show the plotly figure
+    st.plotly_chart(fig, use_container_width=True)
+
+def pieofip():
+    # Count the occurrences of College_Name for each University
+    college_counts = df_filtered.groupby('Is_Professional')['College_Name'].nunique().reset_index()
+    college_counts.columns = ['Is_Professional', 'Count']
+
+    # Create a pie chart using Plotly
+    fig = px.pie(college_counts, values='Count', names='Is_Professional', title='Professional vs Non-Professional')
+
+    # Show the plotly figure
+    st.plotly_chart(fig, use_container_width=True)
+
+def pieofcoutype():
+    # Count the occurrences of College_Name for each University
+    college_counts = df_filtered.groupby('Course_Type')['College_Name'].nunique().reset_index()
+    college_counts.columns = ['Course_Type', 'Count']
+
+    # Create a pie chart using Plotly
+    fig = px.pie(college_counts, values='Count', names='Course_Type', title='Course Type Percentage')
+
+    # Show the plotly figure
+    st.plotly_chart(fig, use_container_width=True)
+
+def pieofaided():
+    # Count the occurrences of College_Name for each University
+    college_counts = df_filtered.groupby('Course_Aided_Unaided')['College_Name'].nunique().reset_index()
+    college_counts.columns = ['Course_Aided_Unaided', 'Count']
+
+    # Create a pie chart using Plotly
+    fig = px.pie(college_counts, values='Count', names='Course_Aided_Unaided', title='Aided vs UnAided Courses')
+
+    # Show the plotly figure
+    st.plotly_chart(fig, use_container_width=True)
+
 def showDistrictCount():
     district_college_counts = df.groupby('District')['College_Name'].nunique().reset_index()
     district_college_counts.columns = ['District', 'College_Count']
@@ -303,7 +348,6 @@ with st.container():
             uvsc()
             ccc()
             pieofu()
-            showDistrictCount()
             
             
 
@@ -352,4 +396,13 @@ with st.container():
 
                 # with col2:
                 #     if st.button('Show Plotly Chart'):
-                #         st.plotly_chart(plotly_chart_log, use_container_width=True)
+                #         st.plotly_chart(plotly_chart_log, use_container_width=True
+    with st.container():
+        col1, col2 = st.columns(2)  # This creates two columns (or a two-column row)
+        with col1:
+            pieofct()
+            pieofip()
+        with col2:
+            pieofcoutype()
+            pieofaided()
+        showDistrictCount()
