@@ -11,14 +11,6 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed")
 
-
-hide_github_icon = """
-#GithubIcon{
-    visibility: hidden;
-}
-"""
-st.markdown(hide_github_icon,unsafe_allow_html=True)
-
 alt.themes.enable("dark")
 
 custom_css = """
