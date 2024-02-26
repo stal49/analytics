@@ -12,12 +12,18 @@ st.set_page_config(
     initial_sidebar_state="collapsed")
 
 
-hide_github_icon = """
-#GithubIcon{
-    visibility: hidden;
-}
-"""
-st.markdown(hide_github_icon,unsafe_allow_html=True)
+st.markdown(
+    """
+    <style>
+    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
+    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
+    .viewerBadge_text__1JaDK {
+        display: none;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 alt.themes.enable("dark")
 
@@ -40,7 +46,7 @@ custom_css = """
 # </style>
 # """
 
-st.markdown(custom_css, unsafe_allow_html=True)
+# st.markdown(custom_css, unsafe_allow_html=True)
 # Load data
 # df = pd.read_csv('data/CollegeCourseList.csv', encoding='ISO-8859-1')
 try:
