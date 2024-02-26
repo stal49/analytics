@@ -11,42 +11,28 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="collapsed")
 
-
-st.markdown(
-    """
-    <style>
-    .css-1jc7ptx, .e1ewe7hr3, .viewerBadge_container__1QSob,
-    .styles_viewerBadge__1yB5_, .viewerBadge_link__1S137,
-    .viewerBadge_text__1JaDK {
-        display: none;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 alt.themes.enable("dark")
 
-custom_css = """
-<style>
-    html, body, [class*="st-"] {
-        font-family: 'Garamond', serif;
-    }
-</style>
-"""
-
 # custom_css = """
-# <head>
-# <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-# </head>
 # <style>
 #     html, body, [class*="st-"] {
-#         font-family: 'Roboto', sans-serif;
+#         font-family: 'Garamond', serif;
 #     }
 # </style>
 # """
 
-# st.markdown(custom_css, unsafe_allow_html=True)
+custom_css = """
+<style>
+[data-testid="stSidebar"] > div:first-child {
+    background-color: #4D9FEC; /* Sidebar background color */
+}
+.css-1d391kg {
+    color: #FFFFFF; /* Sidebar text color */
+}
+</style>
+"""
+
+st.markdown(custom_css, unsafe_allow_html=True)
 # Load data
 # df = pd.read_csv('data/CollegeCourseList.csv', encoding='ISO-8859-1')
 try:
@@ -75,8 +61,8 @@ with st.sidebar:
     df_selected_categories = df_filtered[df_filtered.Course_Category == selected_categories]
     df_selected_categories_sorted = df_selected_categories.sort_values(by="Course_Category", ascending=False)
 
-    color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
-    selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
+    # color_theme_list = ['blues', 'cividis', 'greens', 'inferno', 'magma', 'plasma', 'reds', 'rainbow', 'turbo', 'viridis']
+    # selected_color_theme = st.selectbox('Select a color theme', color_theme_list)
 
 #######################
 
@@ -307,6 +293,7 @@ with st.container():
             ]
 
             # Display each university name in bold
+            st.markdown('#### Targeted Universities')
             for uni in universities:
                 st.markdown(f"* #### {uni}")
 
